@@ -8,7 +8,7 @@ app.use(express.static('static'));
 
 socketIO.on('connection', function (socket) {
     socket.on('chat message', function (message) {
-        console.log('somebody said ' + message);
+        socketIO.emit('chat message', message);
     });
 });
 

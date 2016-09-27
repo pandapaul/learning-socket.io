@@ -24,10 +24,14 @@
       var socket = io();
       var form = $('form');
       var message = $('#m');
+      var chatLog = $('#messages');
       form.submit(function () {
           socket.emit('chat message', message.val());
           message.val('');
           return false;
+      });
+      socket.on('chat message', function (message) {
+          chatLog.append($('<li>').text(message));
       });
     </script>
   </body>
