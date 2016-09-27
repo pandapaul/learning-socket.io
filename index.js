@@ -7,7 +7,9 @@ const socketIO = require('socket.io')(http);
 app.use(express.static('static'));
 
 socketIO.on('connection', function (socket) {
-    console.log('yay connection');
+    socket.on('chat message', function (message) {
+        console.log('somebody said ' + message);
+    });
 });
 
 http.listen(3000, function(){
