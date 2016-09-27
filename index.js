@@ -1,9 +1,15 @@
 'use strict';
 const express = require('express');
 const app = express();
+const http = require('http').Server(app);
+const socketIO = require('socket.io')(http);
 
 app.use(express.static('static'));
 
-app.listen(3000, function(){
-  console.log('listening on *:3000');
+socketIO.on('connection', function (socket) {
+    console.log('yay connection');
+});
+
+http.listen(3000, function(){
+    console.log('listening on *:3000');
 });
